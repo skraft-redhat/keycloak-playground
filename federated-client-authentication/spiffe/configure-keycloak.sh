@@ -18,10 +18,10 @@ echo "------------------------------------------"
 echo "Create Kubernetes Identity Provider config"
 echo "------------------------------------------"
 
-./kcadm.sh create identity-provider/instances -r spiffe -s alias=spiffe -s providerId=spiffe -s config='{"trustDomain": "spiffe://example.org", "bundleEndpoint": "https://localhost:8543"}'
+./kcadm.sh create identity-provider/instances -r spiffe -s alias=spiffe -s providerId=spiffe -s config='{"trustDomain": "spiffe://apps.sno.irgendeine.cloud", "bundleEndpoint": "https://federation.apps.sno.irgendeine.cloud"}'
 
 echo "------------------------------------------------------------"
 echo "Create client authenticating with SPIFFE"
 echo "------------------------------------------------------------"
 
-./kcadm.sh create clients -r spiffe -s clientId=myclient -s serviceAccountsEnabled=true -s clientAuthenticatorType=federated-jwt -s attributes='{ "jwt.credential.issuer": "spiffe", "jwt.credential.sub": "spiffe://example.org/myclient" }'
+./kcadm.sh create clients -r spiffe -s clientId=myclient -s serviceAccountsEnabled=true -s clientAuthenticatorType=federated-jwt -s attributes='{ "jwt.credential.issuer": "spiffe", "jwt.credential.sub": "spiffe://apps.sno.irgendeine.cloud/ns/workload-identity-tutorial/sa/py" }'
